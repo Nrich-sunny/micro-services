@@ -1,0 +1,22 @@
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848 # nacos server addr
+    gateway:
+      routes:
+        - id: order-service
+          #          uri: http://localhost:8001/order
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+        - id: customer-service
+          #          uri: http://localhost:8002/customer
+          uri: lb://customer-service
+          predicates:
+            - Path=/customer/**
+

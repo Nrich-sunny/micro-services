@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  order-service:
+    build:
+      context: ./order
+    image: hm-order-service
+    container_name: hm-order-service
+    hostname: order-service
+    ports:
+      - "8001:8001"
+
+  customer-service:
+    build:
+      context: ./customer
+    image: hm-customer-service
+    container_name: hm-customer-service
+    hostname: customer-service
+    ports:
+      - "8002:8002"
+
+  gateway:
+    build:
+      context: ./gateway2
+    image: hm-gateway
+    container_name: hm-gateway
+    hostname: gateway
+    ports:
+      - "8003:8003"
